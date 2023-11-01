@@ -12,6 +12,8 @@ import {stringify} from "querystring";
  */
 const request = extend({
   credentials: 'include', // 默认请求是否带上cookie
+  prefix: process.env.NODE_ENV === 'production' ? 'http://101.43.230.78:8080' : undefined
+  // prefix: process.env.NODE_ENV = 'http://101.43.230.78:8080'
   // requestType: 'form',
 });
 
@@ -21,6 +23,7 @@ const request = extend({
 request.interceptors.request.use((url, options): any => {
   console.log(`do request url = ${url}`);
   return {
+    // `http://101.43.230.78:8080${url}`
     url,
     options: {
       ...options,
